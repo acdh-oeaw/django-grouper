@@ -1,0 +1,5 @@
+<ul>
+{% for group, ids in groups.items %}
+<li>{{ group }}: {% for id in ids %} <a href="{% url "apis:generic:detail" content_type id %}">{{ id }}</a>, {% endfor %}</li>
+{% endfor %}
+</ul>
