@@ -11,7 +11,9 @@ from .utils import group_queryset
 class BaseView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         app_label, model = request.GET.get("group_content_type", ".").split(".")
-        self.django_content_type = get_object_or_404(ContentType, app_label=app_label, model=model)
+        self.django_content_type = get_object_or_404(
+            ContentType, app_label=app_label, model=model
+        )
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -42,7 +44,9 @@ class Group(BaseView):
         ctx = super().get_context_data(*args, **kwargs)
         ctx["content_type"] = self.django_content_type
         ctx["title"] = self.request.GET.get("group_title")
-        ctx["object_list"] = self.django_content_type.model_class().objects.filter(pk__in=ids)
+        ctx["object_list"] = self.django_content_type.model_class().objects.filter(
+            pk__in=ids
+        )
         return ctx
 
     def post(self, request, *args, **kwargs):
@@ -50,7 +54,9 @@ class Group(BaseView):
         ctx["merged_ids"] = []
         newinstance = self.django_content_type.model_class().objects.create()
         for merge_id in request.POST.getlist("to_merge"):
-            mergeobject = get_object_or_404(self.django_content_type.model_class(), pk=merge_id)
+            mergeobject = get_object_or_404(
+                self.django_content_type.model_class(), pk=merge_id
+            )
             mergeobject.grouped_into = newinstance
             mergeobject.save()
             ctx["merged_ids"].append(merge_id)
