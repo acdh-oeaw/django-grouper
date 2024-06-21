@@ -15,6 +15,7 @@ django = ">=3"
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.4.8"
 djlint = "^1.31.1"
+deptry = "^0.16.1"
 
 [build-system]
 requires = ["poetry-core"]
