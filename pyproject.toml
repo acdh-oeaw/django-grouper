@@ -6,7 +6,7 @@ authors = ["Birger Schacht"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 pandas = "^2.2.2"
 scikit-learn = "^1.5.0"
 sparse-dot-topn = "^1.1.1"
