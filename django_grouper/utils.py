@@ -74,5 +74,6 @@ def group_queryset(queryset, fields=[]) -> dict:
         df["Group"] = df["grouper"].map(group_lookup).fillna(df["grouper"])
 
         d = df.groupby("Group")["pk"].apply(list).to_dict()
-        return {key: value for key, value in d.items() if len(value) > 1}
+        ret = {key: value for key, value in d.items() if len(value) > 1}
+        return dict(sorted(ret.items(), key=lambda item: len(item[1]), reverse=True))
     return {}
