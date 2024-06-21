@@ -1,5 +1,11 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+<div class="container mt-3">
 <ul>
 {% for group, ids in groups.items %}
-<li>{{ group }}: {% for id in ids %} <a href="{% url "apis:generic:detail" content_type id %}">{{ id }}</a>, {% endfor %}</li>
+<li><a href="{% url "group" %}?content_type={{content_type.app_label}}.{{content_type.model}}{% for id in ids %}&ids={{id}}{% endfor %}">{{ group }}</a>: <details style="display: inline;"><summary>{{ ids|length }}</summary>{% for id in ids %} <a href="{% url "apis_core:apis_entities:generic_entities_detail_view" content_type.model id %}">{{ id }}</a>, {% endfor %}</details></li>
 {% endfor %}
 </ul>
+</div>
+{% endblock content %}
