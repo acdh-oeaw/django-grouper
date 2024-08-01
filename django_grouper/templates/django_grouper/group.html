@@ -21,14 +21,18 @@
   position: relative;
   margin-bottom: 30px;
 }
+.primary {
+  border: 4px solid red !important;
+}
         </style>
         <div class="container">
             <form class="mt-5" method="post">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Merge selected</button>
+                <button id="submitbtn" type="submit" class="btn btn-primary" disabled>Merge selected</button>
                 <input type="hidden"
                        name="content_type"
                        value="{{ content_type.app_label }}.{{ content_type.model }}" />
+                <input type="hidden" id="inputprimary" name="primary" />
                 <div class="card-columns mt-5">
                     {% for object in object_list %}
                         <div class="card_area">
@@ -36,8 +40,9 @@
                                    type="checkbox"
                                    id="to_merge"
                                    name="to_merge"
-                                   value="{{ object.pk }}" />
-                            <div class="card border" style="width: 18rem;">
+                                   value="{{ object.pk }}"
+                                   ondblclick="setPrimary({{ object.pk }})" />
+                            <div class="card border" style="width: 18rem;" id="card-{{ object.pk }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ object }}</h5>
                                     <p class="card-text">Details</p>
@@ -50,3 +55,15 @@
         </div>
     {% endif %}
 {% endblock content %}
+{% block scripts %}
+    <script>
+function setPrimary(id) {
+  document.getElementById("inputprimary").value = id;
+  Array.from(document.getElementsByClassName("primary")).forEach(function(el) {
+    el.classList.remove("primary");
+  });
+  document.getElementById("card-"+id).classList.add("primary");
+  document.getElementById("submitbtn").removeAttribute("disabled");
+}
+    </script>
+{% endblock scripts %}
