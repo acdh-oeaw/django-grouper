@@ -56,6 +56,7 @@
                        name="content_type"
                        value="{{ content_type.app_label }}.{{ content_type.model }}" />
                 <input type="hidden" id="inputprimary" name="primary" />
+                <div id="primarymsg">Select one option as the primary option</div>
                 <div class="card-columns mt-5">
                     {% for object in object_list %}
                         <div class="card_area">
@@ -111,6 +112,7 @@ function setPrimary(id) {
   document.getElementById("submitbtn").removeAttribute("disabled");
   document.getElementById("primary-preview-area").innerHTML = document.getElementById("preview-"+id).innerHTML;
   document.getElementById("primary-preview-area").style.border = "2px solid red";
+  document.getElementById("primarymsg").innerHTML = "&nbsp;";
 }
 function showPreview(id) {
   document.getElementById("current-preview-area").innerHTML = document.getElementById("preview-"+id).innerHTML;
