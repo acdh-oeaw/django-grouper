@@ -1,4 +1,9 @@
 {% extends "webpage/base.html" %}
+{% block scriptHeader %}
+    {{ block.super }}
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.2.0/diff.js"></script>
+{% endblock scriptHeader %}
 {% block content %}
     {% if merged_ids %}
         {% for merge_id in merged_ids %}Merged {{ merge_id }}{% endfor %}
@@ -47,6 +52,9 @@
 .fundament-default-footer {
   margin-top: 40em !important;
 }
+.relations {
+  white-space: pre;
+}
         </style>
         <div class="container">
             <form class="mt-5" method="post">
@@ -68,21 +76,21 @@
                                    ondblclick="setPrimary({{ object.pk }})"
                                    onmouseover="showPreview({{ object.pk }})" />
                             <div id="preview-{{ object.pk }}" class="preview">
-                                <b>{{ object }}</b>
-                                <p>
+                                <p class="str">{{ object }}</p>
+                                <p class="dates">
                                     {% if object.start_date_written %}
                                         {{ object.start_date_written }}
                                         {% if object.end_date_written %}-{% endif %}
                                     {% endif %}
                                     {% if object.end_date_written %}{{ object.end_date_written }}{% endif %}
                                 </p>
-                                <p>
+                                <p class="notes">
                                     {% if object.notes %}{{ object.notes }}{% endif %}
                                 </p>
-                                <ul>
-                                    {% for rel in object.personinstitution_set.all %}<li>{{ rel }}</li>{% endfor %}
-                                    {% for rel in object.personplace_set.all %}<li>{{ rel }}</li>{% endfor %}
-                                </ul>
+                                <p class="relations">
+                                    {% for rel in object.personinstitution_set.all %}{{ rel }}{% endfor %}
+                                    {% for rel in object.personplace_set.all %}{{ rel }}{% endfor %}
+                                </p>
                             </div>
                             <div class="card border" style="width: 18rem;" id="card-{{ object.pk }}">
                                 <div class="card-body">
@@ -114,7 +122,34 @@ function setPrimary(id) {
   document.getElementById("primarymsg").innerHTML = "&nbsp;";
 }
 function showPreview(id) {
-  document.getElementById("current-preview-area").innerHTML = document.getElementById("preview-"+id).innerHTML;
+  previewarea = document.getElementById("current-preview-area");
+  previewarea.innerHTML = "";
+
+  preview = document.getElementById("preview-"+id);
+  parray = preview.getElementsByTagName("p");
+  for (let i=0; i<parray.length; i++) {
+    diff = mydiff(parray[i]);
+    previewarea.appendChild(mydiff(parray[i]));
+  }
 }
+
+function mydiff(el) {
+  primary = document.getElementById("primary-preview-area");
+  pel = primary.getElementsByClassName(el.classList.value)[0];
+  p = document.createElement('p');
+  p.classList.add(el.classList.value);
+  if (pel) {
+    const diff = Diff.diffChars(el.innerHTML, pel.innerHTML);
+    diff.forEach((part) => {
+      const color = part.added ? 'green' : part.removed ? 'red' : 'grey';
+      span = document.createElement('span');
+      span.style.color = color;
+      span.innerHTML = part.value;
+      p.appendChild(span);
+    });
+  }
+  return p;
+}
+  
     </script>
 {% endblock scripts %}
