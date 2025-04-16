@@ -41,11 +41,21 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 10em;
+  height: 15em;
   background-color: #F5F5F5;
   border-top: 1px solid black;
   overflow: scroll;
+  z-index: 100000;
 }
+#current-preview-area, #primary-preview-area {
+  max-width: 48%;
+  overflow-wrap: break-word;
+  height: 100%;
+  word-wrap: break-word;
+  word-break: break-word;
+  height: 100%;
+  overflow: auto;
+};
 .preview-content {
   border: 1px solid black;
 }
@@ -53,7 +63,7 @@
   margin-top: 40em !important;
 }
 .relations {
-  white-space: pre;
+  white-space: pre-wrap;
 }
         </style>
         <div class="container">
