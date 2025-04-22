@@ -50,12 +50,11 @@
 #current-preview-area, #primary-preview-area {
   max-width: 48%;
   overflow-wrap: break-word;
-  height: 100%;
   word-wrap: break-word;
   word-break: break-word;
   height: 100%;
   overflow: auto;
-};
+}
 .preview-content {
   border: 1px solid black;
 }
@@ -65,8 +64,22 @@
 .relations {
   white-space: pre-wrap;
 }
+
+form#addIdForm {
+padding-top: 2em;
+}
         </style>
         <div class="container">
+            <div class="mb-3">
+                <form id="addIdForm" class="form-inline">
+                    <div class="input-group">
+                        <input type="text" id="additionalId" class="form-control" placeholder="Enter ID to add">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-secondary">Add person by ID</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <form class="mt-5" method="post">
                 {% csrf_token %}
                 <button id="submitbtn" type="submit" class="btn btn-primary" disabled>Merge selected</button>
@@ -163,6 +176,18 @@ function mydiff(el) {
   }
   return p;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('addIdForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const idValue = document.getElementById('additionalId').value.trim();
+    if (idValue) {
+      const currentUrl = window.location.href;
+      const separator = currentUrl.includes('?') ? '&' : '?';
+      window.location.href = `${currentUrl}${separator}ids=${idValue}`;
+    }
+  });
+});
   
     </script>
 {% endblock scripts %}
