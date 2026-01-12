@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/acdh-oeaw/django-grouper/compare/v0.2.0...v0.3.0) (2026-01-12)
+
+
+### Features
+
+* refactor grouping approach ([95c00d3](https://github.com/acdh-oeaw/django-grouper/commit/95c00d37f6b14c909d3fc9caa95163d5938f4d37))
+
+
+### Documentation
+
+* **README:** drop superfluous link from README ([26663f9](https://github.com/acdh-oeaw/django-grouper/commit/26663f90821b8aa1d63403109fd7352e597110dd))
+
 ## [0.2.0](https://github.com/acdh-oeaw/django-grouper/compare/v0.1.0...v0.2.0) (2024-08-28)
 
 
