@@ -1,6 +1,4 @@
-Group Django model instances on similar fields
-
-Based on [this tutorial](https://towardsdatascience.com/group-thousands-of-similar-spreadsheet-text-cells-in-seconds-2493b3ce6d8d)
+Group Django model instances based on similar fields
 
 # Installation
 
