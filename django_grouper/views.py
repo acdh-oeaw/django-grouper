@@ -52,13 +52,14 @@ class Group(BaseView):
     def post(self, request, *args, **kwargs):
         ctx = self.get_context_data()
         ctx["merged_ids"] = []
+        model_cls = self.django_content_type.model_class()
         primary = request.POST.get("primary")
-        primaryobj = self.django_content_type.model_class().objects.get(pk=primary)
-        for merge_id in request.POST.getlist("to_merge"):
-            mergeobject = get_object_or_404(
-                self.django_content_type.model_class(), pk=merge_id
-            )
-            mergeobject.grouped_into = primaryobj
-            mergeobject.save()
-            ctx["merged_ids"].append(merge_id)
+        primaryobj = model_cls.objects.get(pk=primary)
+        merge_objects = [
+            get_object_or_404(model_cls, pk=merge_id)
+            for merge_id in request.POST.getlist("to_merge")
+        ]
+        primaryobj = getattr(
+            primaryobj, getattr(settings, "GROUP_MERGE_FUNCTION", "merge")
+        )(merge_objects)
         return HttpResponseRedirect(primaryobj.get_absolute_url())
