@@ -18,7 +18,11 @@ summary {
                     <details>
                         <summary>{{ entries|length }} occurences</summary>
                         {% for entry in entries %}
-                            <a href="{% url "apis_core:apis_entities:generic_entities_detail_view" content_type.model entry.pk %}">{{ entry.pk }}</a>,
+                            {% url "apis_core:generic:detail" content_type entry.pk as detail_url %}
+                            {% if not detail_url %}
+                                {% url "apis_core:apis_entities:generic_entities_detail_view" content_type.model entry.pk as detail_url %}
+                            {% endif %}
+                            {% if detail_url %}<a href="{{ detail_url }}">{{ entry.pk }}</a>,{% endif %}
                         {% endfor %}
                     </details>
                 </li>
