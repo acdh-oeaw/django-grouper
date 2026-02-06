@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
 from django.template.loader import select_template
 from django.views.generic.base import TemplateView
@@ -7,6 +8,7 @@ from django.http import HttpResponseRedirect
 
 
 from .utils import group_queryset
+from django_grouper.signals import trigger_merge
 
 
 class BaseView(TemplateView):
@@ -55,15 +57,17 @@ class Group(BaseView):
         return ctx
 
     def post(self, request, *args, **kwargs):
-        ctx = self.get_context_data()
-        ctx["merged_ids"] = []
-        primary = request.POST.get("primary")
-        primaryobj = self.django_content_type.model_class().objects.get(pk=primary)
-        for merge_id in request.POST.getlist("to_merge"):
-            mergeobject = get_object_or_404(
-                self.django_content_type.model_class(), pk=merge_id
-            )
-            mergeobject.grouped_into = primaryobj
-            mergeobject.save()
-            ctx["merged_ids"].append(merge_id)
-        return HttpResponseRedirect(primaryobj.get_absolute_url())
+        primary = request.POST.get("primary", None)
+        to_merge = request.POST.get("to_merge", None)
+        if primary and to_merge:
+            model = self.django_content_type.model_class()
+            primary = model.objects.get(pk=primary)
+            secondaries = [
+                get_object_or_404(model, pk=pk)
+                for pk in request.POST.getlist("to_merge")
+            ]
+            trigger_merge.send(self, primary=primary, secondaries=secondaries)
+            return HttpResponseRedirect(primary.get_absolute_url())
+        raise ValidationError(
+            "Expected `primary` and `to_merge` values, but could not find them."
+        )
