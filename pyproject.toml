@@ -9,6 +9,10 @@ dependencies = [
   "scikit-learn>=1.5.0",
   "django>=3"
 ]
+[project.urls]
+source = "https://github.com/acdh-oeaw/django-grouper"
+changelog = "https://github.com/acdh-oeaw/django-grouper/blob/main/CHANGELOG.md"
+issues = "https://github.com/acdh-oeaw/django-grouper/issues"
 
 [tool.uv]
 dev-dependencies = [
