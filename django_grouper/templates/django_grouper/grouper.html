@@ -14,7 +14,7 @@ summary {
         <ul>
             {% for cluster, entries in groups.items %}
                 <li>
-                    <a href="{% url "group" %}?group_content_type={{ content_type.app_label }}.{{ content_type.model }}{% for id in ids %}&ids={{ id }}{% endfor %}">{{ cluster }}</a>
+                    <a href="{% url "group" %}?group_content_type={{ content_type.app_label }}.{{ content_type.model }}{% for entry in entries %}&ids={{ entry.pk }}{% endfor %}">{{ cluster }}</a>
                     <details>
                         <summary>{{ entries|length }} occurences</summary>
                         {% for entry in entries %}
