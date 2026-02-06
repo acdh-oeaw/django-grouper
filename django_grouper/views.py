@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
+from django.template.loader import select_template
 from django.views.generic.base import TemplateView
 from django.http import HttpResponseRedirect
 
@@ -26,6 +27,8 @@ class Grouper(BaseView):
         ctx = super().get_context_data(*args, **kwargs)
         ctx["content_type"] = self.django_content_type
         ctx["groups"] = group_queryset(self.get_queryset(), fields)
+        # these are the template names that are used in apis
+        ctx["base_template"] = select_template(["webpage/base.html", "base.html"])
         return ctx
 
     def get_queryset(self):
@@ -47,6 +50,8 @@ class Group(BaseView):
         ctx["object_list"] = self.django_content_type.model_class().objects.filter(
             pk__in=ids
         )
+        # these are the template names that are used in apis
+        ctx["base_template"] = select_template(["webpage/base.html", "base.html"])
         return ctx
 
     def post(self, request, *args, **kwargs):
