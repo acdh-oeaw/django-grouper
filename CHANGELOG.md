@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.4.0](https://github.com/acdh-oeaw/django-grouper/compare/v0.3.0...v0.4.0) (2026-02-06)
+
+
+### Features
+
+* replace hardcoded merge functionality with signal ([101ad0f](https://github.com/acdh-oeaw/django-grouper/commit/101ad0fc907d075b3ce4a3e774bfe77ca4ae3a81))
+
+
+### Bug Fixes
+
+* **templates:** try different detail url routes ([976c411](https://github.com/acdh-oeaw/django-grouper/commit/976c4112af2edf6c2ebcfde7de3eab4bb6adc2b6))
+* **templates:** update template for changed context_data ([29eb1ce](https://github.com/acdh-oeaw/django-grouper/commit/29eb1ce37d38478ae03fc185a34e7c92b0445446))
+* **templates:** use select_template for base template ([3744b39](https://github.com/acdh-oeaw/django-grouper/commit/3744b3947b5e39f4f0a2330eff0596227048a2b6))
+
+
+### Documentation
+
+* **README:** add paragraph about the new `trigger_merge` signal ([345655f](https://github.com/acdh-oeaw/django-grouper/commit/345655f43c9fcc35b8c97e0941e40bb5dfba8203))
+
 ## [0.3.0](https://github.com/acdh-oeaw/django-grouper/compare/v0.2.0...v0.3.0) (2026-01-12)
 
 

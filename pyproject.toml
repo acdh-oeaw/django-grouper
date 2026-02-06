@@ -1,6 +1,6 @@
 [project]
 name = "django-grouper"
-version = "0.3.0"
+version = "0.4.0"
 description = "Group Django objects by similarity"
 authors = [{ name = "Birger Schacht", email = "birger.schacht@oeaw.ac.at" }]
 readme = "README.md"
