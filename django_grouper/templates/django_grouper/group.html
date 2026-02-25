@@ -64,7 +64,9 @@
                        name="content_type"
                        value="{{ content_type.app_label }}.{{ content_type.model }}" />
                 <input type="hidden" id="inputprimary" name="primary" />
-                <div id="primarymsg">Select one option as the primary option</div>
+                <div id="primarymsg">
+                    Select one option as the primary option (double click). Use a normal click to select merge candidates and right click to open the detail page of a person.
+                </div>
                 <div class="card-columns mt-5">
                     {% for object in object_list %}
                         <div class="card_area">
@@ -74,7 +76,8 @@
                                    name="to_merge"
                                    value="{{ object.pk }}"
                                    ondblclick="setPrimary({{ object.pk }})"
-                                   onmouseover="showPreview({{ object.pk }})" />
+                                   onmouseover="showPreview({{ object.pk }})"
+                                   oncontextmenu="window.open('/apis/entities/entity/person/{{ object.pk }}/detail', '_blank'); return false;" />
                             <div id="preview-{{ object.pk }}" class="preview">
                                 <p class="str">{{ object }}</p>
                                 <p class="dates">
