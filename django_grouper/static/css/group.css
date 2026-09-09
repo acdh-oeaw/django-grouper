@@ -1,0 +1,47 @@
+.checkbox:checked ~ .card{
+  background: #ffc107;
+}
+.checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 18rem;
+    height: 100%;
+    z-index: 999;
+    cursor: pointer;
+}
+.checkbox:hover ~ .card {
+  background: #ffc107;
+}
+
+.card_area{
+  position: relative;
+  margin-bottom: 30px;
+}
+.primary {
+  border: 4px solid red !important;
+}
+.preview {
+  display: none;
+}
+#preview-area {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10em;
+  background-color: #F5F5F5;
+  border-top: 1px solid black;
+  overflow: scroll;
+}
+.preview-content {
+  border: 1px solid black;
+}
+.fundament-default-footer {
+  margin-top: 40em !important;
+}
+.relations {
+  white-space: pre;
+}
+
