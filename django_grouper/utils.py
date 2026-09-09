@@ -1,10 +1,11 @@
 import time
-from sklearn.feature_extraction import DictVectorizer
-from sklearn.cluster import DBSCAN
 from collections import defaultdict
 
+from sklearn.cluster import DBSCAN
+from sklearn.feature_extraction import DictVectorizer
 
-def group_queryset(queryset, fields=[]) -> dict:
+
+def group_queryset(queryset, fields=None) -> dict:
     group_lookup = defaultdict(list)
 
     if fields:

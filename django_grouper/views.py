@@ -1,14 +1,14 @@
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.template.loader import select_template
 from django.views.generic.base import TemplateView
-from django.http import HttpResponseRedirect
 
+from django_grouper.signals import trigger_merge
 
 from .utils import group_queryset
-from django_grouper.signals import trigger_merge
 
 
 class BaseView(TemplateView):
