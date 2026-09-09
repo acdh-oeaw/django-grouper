@@ -3,7 +3,7 @@ function setPrimary(id) {
     Array.from(document.getElementsByClassName("primary")).forEach(function(el) {
         el.classList.remove("primary");
     });
-    document.getElementById("card-" + id).classList.add("primary");
+    document.getElementById("label_" + id).classList.add("primary");
     document.getElementById("submitbtn").removeAttribute("disabled");
     document.getElementById("primary-preview-area").innerHTML = document.getElementById("preview-" + id).innerHTML;
     document.getElementById("primary-preview-area").style.border = "2px solid red";
