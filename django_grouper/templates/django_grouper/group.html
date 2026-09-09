@@ -5,9 +5,6 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.2.0/diff.js"></script>
 {% endblock scriptHeader %}
 {% block content %}
-    {% if merged_ids %}
-        {% for merge_id in merged_ids %}Merged {{ merge_id }}{% endfor %}
-    {% else %}
         <style>
 .checkbox:checked ~ .card{
   background: #ffc107;
@@ -106,7 +103,6 @@
                 <div id="current-preview-area" class="col-sm preview-content"></div>
             </div>
         </div>
-    {% endif %}
 {% endblock content %}
 {% block scripts %}
     <script>
