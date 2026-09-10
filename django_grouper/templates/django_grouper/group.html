@@ -10,6 +10,15 @@
 {% endblock styles %}
 {% block content %}
     <div class="container">
+        <form class="form-inline" onsubmit="appendParam(event)">
+            <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Enter ID to add"
+                       name="addId">
+                <button type="submit" class="btn btn-secondary">Add object by ID</button>
+            </div>
+        </form>
         <form class="mt-5" method="post">
             {% csrf_token %}
             <button id="submitbtn" type="submit" class="btn btn-primary" disabled>Merge selected</button>
