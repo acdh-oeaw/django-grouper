@@ -1,6 +1,7 @@
 import logging
 
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.http import HttpResponseRedirect
@@ -13,7 +14,7 @@ from .utils import group_queryset
 logger = logging.getLogger(__name__)
 
 
-class BaseView(TemplateView):
+class BaseView(LoginRequiredMixin, TemplateView):
     def dispatch(self, request, *args, **kwargs):
         app_label, model = request.GET.get("group_content_type", ".").split(".")
         self.django_content_type = get_object_or_404(
