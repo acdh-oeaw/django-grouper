@@ -29,21 +29,7 @@
                            for="to_merge_{{ object.pk }}"
                            ondblclick="setPrimary({{ object.pk }})"
                            onmouseover="showPreview({{ object.pk }})">{{ object }} ({{ object.pk }})</label>
-                    <div id="preview-{{ object.pk }}" class="preview">
-                        <p class="str">{{ object }}</p>
-                        <p class="dates">
-                            {% if object.start_date_written %}
-                                {{ object.start_date_written }}
-                                {% if object.end_date_written %}-{% endif %}
-                            {% endif %}
-                            {% if object.end_date_written %}{{ object.end_date_written }}{% endif %}
-                        </p>
-                        <p class="notes">{% if object.notes %}{{ object.notes }}{% endif %}</p>
-                        <p class="relations">
-                            {% for rel in object.personinstitution_set.all %}{{ rel }}{% endfor %}
-                            {% for rel in object.personplace_set.all %}{{ rel }}{% endfor %}
-                        </p>
-                    </div>
+                    <div id="preview-{{ object.pk }}" class="preview">{{ object.djg_merge_preview }}</div>
                 {% endfor %}
             </div>
         </form>
