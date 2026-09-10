@@ -15,14 +15,5 @@ django-filter filter.
 The `/group` view lets you select which objects of a list should be merged. If
 you double click an object, it will become the primary, a single click marks an
 object as secondary. There can be one primary and multiple secondaries. The
-primary and the list of secondaries are then passed to the `trigger_merge`
-signal. You can use this method to implement a custom merge method.
-
-```
-from django_grouper.signals import trigger_merge
-
-
-@receiver(trigger_merge)
-def react_on_merge_trigger(sender, primary, secondaries, **kwargs):
-    primary.merge(secondaries)
-```
+secondaries are then passed to the `djg_merge` method on the primary. You can
+use this method to implement a custom merge method.
