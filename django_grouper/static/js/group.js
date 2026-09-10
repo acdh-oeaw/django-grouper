@@ -39,3 +39,13 @@ function mydiff(el) {
     }
     return p;
 }
+
+function appendParam(event) {
+    event.preventDefault();
+    const idValue = event.target.addId.value.trim();
+    if (idValue) {
+        const currentUrl = window.location.href;
+        const separator = currentUrl.includes('?') ? '&' : '?';
+        window.location.href = `${currentUrl}${separator}ids=${idValue}`;
+    }
+}
