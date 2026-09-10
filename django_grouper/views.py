@@ -1,3 +1,5 @@
+import logging
+
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured, ValidationError
@@ -7,6 +9,8 @@ from django.template.loader import select_template
 from django.views.generic.base import TemplateView
 
 from .utils import group_queryset
+
+logger = logging.getLogger(__name__)
 
 
 class BaseView(TemplateView):
@@ -65,6 +69,11 @@ class Group(BaseView):
                 for pk in request.POST.getlist("to_merge")
             ]
             if hasattr(primary, "djg_merge") and callable(primary.djg_merge):
+                logger.info(
+                    "Running `djg_merge` method on %s with %s",
+                    repr(primary),
+                    secondaries,
+                )
                 return HttpResponseRedirect(primary.djg_merge(secondaries))
             else:
                 raise ImproperlyConfigured(
