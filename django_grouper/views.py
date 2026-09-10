@@ -1,12 +1,10 @@
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.template.loader import select_template
 from django.views.generic.base import TemplateView
-
-from django_grouper.signals import trigger_merge
 
 from .utils import group_queryset
 
@@ -66,8 +64,12 @@ class Group(BaseView):
                 get_object_or_404(model, pk=pk)
                 for pk in request.POST.getlist("to_merge")
             ]
-            trigger_merge.send(self, primary=primary, secondaries=secondaries)
-            return HttpResponseRedirect(primary.get_absolute_url())
+            if hasattr(primary, "djg_merge") and callable(primary.djg_merge):
+                return HttpResponseRedirect(primary.djg_merge(secondaries))
+            else:
+                raise ImproperlyConfigured(
+                    f"No `djg_merge` method found on {self.django_content_type}"
+                )
         raise ValidationError(
             "Expected `primary` and `to_merge` values, but could not find them."
         )
