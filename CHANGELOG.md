@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.5.0](https://github.com/acdh-oeaw/django-grouper/compare/v0.4.0...v0.5.0) (2026-09-11)
+
+
+### Features
+
+* **templates:** allow to add a value manually ([bd0f37a](https://github.com/acdh-oeaw/django-grouper/commit/bd0f37a1537263a70d8c29e88b3855c5b5e4c718))
+* **templates:** use an object method instead of hardcoding output ([e042435](https://github.com/acdh-oeaw/django-grouper/commit/e042435893da1486fb1a15bc5c09dbb5dc137fc2))
+* **views:** add logging to group view ([0a368eb](https://github.com/acdh-oeaw/django-grouper/commit/0a368eba9954cc728a23376f3bbdc1b73a1668a8))
+* **views:** replace the signal with a direct method call ([0220b33](https://github.com/acdh-oeaw/django-grouper/commit/0220b33edd061bf9baf271d0651f482d0a8b4e17))
+* **views:** require login for the grouper views ([9fdd63e](https://github.com/acdh-oeaw/django-grouper/commit/9fdd63ee9e1cb5e8c70a3409c75c4f607b022d9c))
+
+
+### Bug Fixes
+
+* **templates:** add a bottom margin to the object list ([8741e47](https://github.com/acdh-oeaw/django-grouper/commit/8741e47201b8a4621a4651454b710f42bcbd7127))
+
+
+### Documentation
+
+* **README:** update documentation about how to run the merge logic ([f9d97fb](https://github.com/acdh-oeaw/django-grouper/commit/f9d97fb165837f6e4e781fbe3eed0260900fa4ea))
+
 ## [0.4.0](https://github.com/acdh-oeaw/django-grouper/compare/v0.3.0...v0.4.0) (2026-02-06)
 
 
