@@ -21,7 +21,7 @@ def group_queryset(queryset, fields=None) -> dict:
         dv = DictVectorizer()
         dv_matrix = dv.fit_transform(cluster_values)
         start = time.time()
-        dbscan = DBSCAN(eps=0.1, min_samples=2, metric="manhattan")
+        dbscan = DBSCAN(eps=0.1, min_samples=2, metric="euclidean")
         dbscan.fit(dv_matrix)
         print("Used " + str(time.time() - start) + "ms for dbscan")
 
