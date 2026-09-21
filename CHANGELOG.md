@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/acdh-oeaw/django-grouper/compare/v0.5.0...v0.5.1) (2026-09-21)
+
+
+### Bug Fixes
+
+* **utils:** use euclidean metric instead of manhatten metric ([822b4b9](https://github.com/acdh-oeaw/django-grouper/commit/822b4b9454a8263c800aa7b3e9a94100d54f3f7c))
+
 ## [0.5.0](https://github.com/acdh-oeaw/django-grouper/compare/v0.4.0...v0.5.0) (2026-09-11)
 
 
