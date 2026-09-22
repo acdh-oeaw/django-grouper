@@ -15,7 +15,7 @@ function showPreview(id) {
     previewarea.innerHTML = "";
 
     preview = document.getElementById("preview-" + id);
-    parray = preview.getElementsByTagName("p");
+    parray = preview.getElementsByTagName("div");
     for (let i = 0; i < parray.length; i++) {
         diff = mydiff(parray[i]);
         previewarea.appendChild(mydiff(parray[i]));
@@ -25,8 +25,8 @@ function showPreview(id) {
 function mydiff(el) {
     primary = document.getElementById("primary-preview-area");
     pel = primary.getElementsByClassName(el.classList.value)[0];
-    p = document.createElement('p');
-    p.classList.add(el.classList.value);
+    div = document.createElement('div');
+    div.classList.add(el.classList.value);
     if (pel) {
         const diff = Diff.diffChars(el.innerHTML, pel.innerHTML);
         diff.forEach((part) => {
@@ -34,10 +34,10 @@ function mydiff(el) {
             span = document.createElement('span');
             span.style.color = color;
             span.innerHTML = part.value;
-            p.appendChild(span);
+            div.appendChild(span);
         });
     }
-    return p;
+    return div;
 }
 
 function appendParam(event) {
