@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.5.2](https://github.com/acdh-oeaw/django-grouper/compare/v0.5.1...v0.5.2) (2026-09-22)
+
+
+### Bug Fixes
+
+* **css:** drop the relations css block ([b67d240](https://github.com/acdh-oeaw/django-grouper/commit/b67d2403a64a4e35257b4cc02cef8060081e3c07))
+* **js:** use `div` instead of `p` for the blocks the difflib compares ([7547eaf](https://github.com/acdh-oeaw/django-grouper/commit/7547eaf7b00e9042e4f4e2bb43ac6d7e0b3bd1be))
+* **templates:** add link to objects into input labels ([05a402f](https://github.com/acdh-oeaw/django-grouper/commit/05a402f0aad4887169fc8f00943142a6107ecfa1))
+* **templates:** trust the output of the merge preview ([8a5a7d6](https://github.com/acdh-oeaw/django-grouper/commit/8a5a7d65ecb03c029317bebe817546e7724fdce1))
+
 ## [0.5.1](https://github.com/acdh-oeaw/django-grouper/compare/v0.5.0...v0.5.1) (2026-09-21)
 
 
