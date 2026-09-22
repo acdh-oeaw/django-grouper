@@ -38,7 +38,7 @@
                            for="to_merge_{{ object.pk }}"
                            ondblclick="setPrimary({{ object.pk }})"
                            onmouseover="showPreview({{ object.pk }})">{{ object }} ({{ object.pk }})</label>
-                    <div id="preview-{{ object.pk }}" class="preview">{{ object.djg_merge_preview }}</div>
+                    <div id="preview-{{ object.pk }}" class="preview">{{ object.djg_merge_preview|safe }}</div>
                 {% endfor %}
             </div>
         </form>
