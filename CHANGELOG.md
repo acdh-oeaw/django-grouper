@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.3](https://github.com/acdh-oeaw/django-grouper/compare/v0.5.2...v0.5.3) (2026-11-20)
+
+
+### Bug Fixes
+
+* **css:** make the preview area use 40% of the viewport height ([044f38a](https://github.com/acdh-oeaw/django-grouper/commit/044f38a10585ca96b8a016b005c9f688ef82f89b))
+
 ## [0.5.2](https://github.com/acdh-oeaw/django-grouper/compare/v0.5.1...v0.5.2) (2026-09-22)
 
 
